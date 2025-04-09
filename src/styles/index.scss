@@ -1,0 +1,739 @@
+// src/styles/index.scss
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.app {
+  text-align: center;
+  padding: 20px;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.language-selector, .game-mode-selector, .session-type-selector {
+  margin-top: 20px;
+}
+
+.verb-conjugation, .grammar-test, .synonym-identifier {
+  margin-top: 20px;
+
+  // Session info styling
+  .session-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 1.5rem;
+    padding: 1rem;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    font-weight: 500;
+    max-width: 600px;
+  }
+  
+  // Question area styling
+  .question-area {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+    
+    .verb-info {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border-left: 4px solid #007bff;
+      text-align: left;
+      
+      p {
+        margin: 0.5rem 0;
+      }
+    }
+    
+    .input-area {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      
+      input {
+        flex: 1;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        
+        &:focus {
+          outline: none;
+          border-color: #007bff;
+          box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+        }
+      }
+      
+      button {
+        margin: 0;
+      }
+    }
+    
+    .feedback {
+      padding: 1rem;
+      border-radius: 4px;
+      font-weight: 500;
+      
+      &.correct {
+        background-color: #d4edda;
+        color: #155724;
+      }
+      
+      &.incorrect {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+    }
+  }
+  
+  .session-complete {
+    text-align: center;
+    padding: 2rem;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    
+    h3 {
+      margin-top: 0;
+      color: #333;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.result-display {
+  margin-top: 20px;
+}
+// Add these styles to your index.scss
+
+.session-info {
+  position: relative;
+  
+  .end-session-btn {
+    background-color: #dc3545;
+    color: white;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    margin: 0;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    &:hover {
+      background-color: #bd2130;
+    }
+  }
+}// Add these styles to your index.scss or App.scss
+
+.verb-conjugation {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 30px;
+    color: #333;
+  }
+
+  // Tense Selection Stage
+  .tense-selection-stage {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    .instructions {
+      margin-bottom: 30px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-left: 4px solid #007bff;
+      border-radius: 4px;
+      
+      h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #333;
+      }
+      
+      p {
+        margin: 0;
+        line-height: 1.5;
+        color: #555;
+      }
+    }
+    
+    .start-game-btn {
+      background-color: #28a745;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      margin-top: 20px;
+      
+      &:hover {
+        background-color: #218838;
+      }
+    }
+  }
+
+  // Session info
+  .session-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    position: relative;
+    
+    p {
+      margin: 0;
+      font-weight: 500;
+    }
+    
+    .end-session-btn {
+      background-color: #dc3545;
+      color: white;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      margin: 0;
+      
+      &:hover {
+        background-color: #bd2130;
+      }
+    }
+  }
+
+  // Question area
+  .question-area {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    .verb-info {
+      margin-bottom: 25px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      
+      p {
+        margin: 0;
+        font-size: 1.2rem;
+        
+        strong {
+          color: #333;
+        }
+      }
+    }
+    
+    .conjugation-task {
+      margin-bottom: 25px;
+      
+      .task-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #e9f7fe;
+        border-radius: 8px;
+        
+        p {
+          margin: 0;
+          font-size: 1.1rem;
+          
+          strong {
+            color: #0056b3;
+          }
+        }
+      }
+      
+      .answer-section {
+        label {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: 600;
+          font-size: 1.1rem;
+          color: #333;
+        }
+        
+        .input-area {
+          display: flex;
+          gap: 10px;
+          
+          input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            
+            &:focus {
+              outline: none;
+              border-color: #007bff;
+              box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            }
+          }
+          
+          button {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin: 0;
+            
+            &:hover {
+              background-color: #0056b3;
+            }
+          }
+        }
+      }
+    }
+    
+    .feedback {
+      padding: 15px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      
+      &.correct {
+        background-color: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+      }
+      
+      &.incorrect {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+      }
+    }
+  }
+  
+  // Session complete
+  .session-complete {
+    text-align: center;
+    padding: 30px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      color: #333;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #0056b3;
+    }
+  }
+}
+
+// Update tense selector styles
+.tense-selector {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  .tense-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    
+    .tense-option {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid #ddd;
+      
+      &:hover {
+        background-color: #f0f0f0;
+        border-color: #aaa;
+      }
+      
+      input[type="checkbox"] {
+        margin-right: 8px;
+      }
+      
+      span {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+// Add these styles to your App.scss or index.scss
+
+.verb-conjugation {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 30px;
+    color: #333;
+    text-align: center;
+  }
+
+  // Tense Selection Stage
+  .tense-selection-stage {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    .instructions {
+      margin-bottom: 30px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-left: 4px solid #007bff;
+      border-radius: 4px;
+      
+      h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #333;
+      }
+      
+      p {
+        margin: 0 0 10px 0;
+        line-height: 1.5;
+        color: #555;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    
+    .session-info-display {
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #e9f7fe;
+      border-radius: 8px;
+      
+      p {
+        margin: 5px 0;
+        
+        strong {
+          color: #0056b3;
+        }
+      }
+    }
+    
+    .start-game-btn {
+      background-color: #28a745;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px 30px;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      
+      &:hover {
+        background-color: #218838;
+      }
+      
+      &:disabled {
+        background-color: #6c757d;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // Session info
+  .session-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    position: relative;
+    
+    .timer, .question-counter, .score-display {
+      display: flex;
+      align-items: center;
+      
+      .label {
+        font-weight: 500;
+        margin-right: 8px;
+        color: #495057;
+      }
+      
+      .value {
+        font-weight: 600;
+        color: #0056b3;
+        
+        // Timer styling when low on time (< 60s)
+        &.low-time {
+          color: #dc3545;
+          animation: pulse 1s infinite;
+        }
+      }
+    }
+    
+    .end-session-btn {
+      background-color: #dc3545;
+      color: white;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      margin: 0;
+      
+      &:hover {
+        background-color: #bd2130;
+      }
+    }
+  }
+
+  // Question area
+  .question-area {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    .verb-info {
+      margin-bottom: 25px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      
+      p {
+        margin: 0;
+        font-size: 1.2rem;
+        
+        strong {
+          color: #333;
+        }
+      }
+    }
+    
+    .conjugation-task {
+      margin-bottom: 25px;
+      
+      .task-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #e9f7fe;
+        border-radius: 8px;
+        
+        p {
+          margin: 0;
+          font-size: 1.1rem;
+          
+          strong {
+            color: #0056b3;
+          }
+        }
+      }
+      
+      .answer-section {
+        label {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: 600;
+          font-size: 1.1rem;
+          color: #333;
+        }
+        
+        .input-area {
+          display: flex;
+          gap: 10px;
+          
+          input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            
+            &:focus {
+              outline: none;
+              border-color: #007bff;
+              box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            }
+          }
+          
+          button {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin: 0;
+            
+            &:hover {
+              background-color: #0056b3;
+            }
+          }
+        }
+      }
+    }
+    
+    .feedback {
+      padding: 15px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      
+      &.correct {
+        background-color: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+      }
+      
+      &.incorrect {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+      }
+      
+      &.partial {
+        background-color: #fff3cd;
+        color: #856404;
+        border-left: 4px solid #ffc107;
+      }
+      
+      &.info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border-left: 4px solid #17a2b8;
+      }
+    }
+  }
+  
+  // Loading state
+  .loading {
+    text-align: center;
+    padding: 30px;
+    
+    p {
+      color: #6c757d;
+      font-style: italic;
+    }
+  }
+}
+
+// Pulse animation for time running out
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Update tense selector styles
+.tense-selector {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  
+  h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  .tense-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    
+    .tense-option {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid #ddd;
+      
+      &:hover {
+        background-color: #f0f0f0;
+        border-color: #aaa;
+      }
+      
+      input[type="checkbox"] {
+        margin-right: 8px;
+      }
+      
+      span {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}

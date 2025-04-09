@@ -97,7 +97,7 @@ const VerbConjugation = ({ language, sessionType, onScoreUpdate }) => {
   const getRandomFeedback = (status) => {
     const messages = FEEDBACK_MESSAGES[status] || FEEDBACK_MESSAGES.incorrect;
     if (!messages || messages.length === 0) {
-        return "Something went wrong!"; // Default message
+        return "!"; // Default message
     }
     return messages[Math.floor(Math.random() * messages.length)];
 };

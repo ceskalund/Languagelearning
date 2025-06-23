@@ -6,6 +6,7 @@ import TenseSelector from './TenseSelector';
 import { verbs as frenchVerbs } from '../data/french';
 import { verbs as norwegianVerbs } from '../data/norwegian';
 import SessionSummary from './SessionSummary';
+import '../styles/VerbConjugator.css';
 
 // Playful feedback messages
 const FEEDBACK_MESSAGES = {
@@ -25,7 +26,7 @@ const FEEDBACK_MESSAGES = {
     incorrect: [
       "Oups! Essayons encore 🤔", 
       "Pas tout à fait... Réessaie! 🎯", 
-      "L’apprentissage est un voyage! 🚀"
+      "L'apprentissage est un voyage! 🚀"
     ]
   },
   norwegian: {
@@ -89,18 +90,19 @@ const VerbConjugation = ({ language, sessionType, onScoreUpdate }) => {
       particleCount: 100,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#ff0a54', '#ff477e', '#ff7096', '#ff85a2', '#fbb1bd', '#f9bec7']
+      colors: ['#FF6B6B', '#4ECDC4', '#FFE66D', '#1A535C', '#F7FFF7'] // Updated to match new color scheme
     });
   };
 
   // Select a random feedback message
-  const getRandomFeedback = (status) => {
-    const messages = FEEDBACK_MESSAGES[status] || FEEDBACK_MESSAGES.incorrect;
+  const getRandomFeedback = (status, lang = language) => {
+    const messages = FEEDBACK_MESSAGES[lang.toLowerCase()]?.[status] || [];
     if (!messages || messages.length === 0) {
-        return "!"; // Default message
+        return "Something went wrong!"; // Default message
     }
     return messages[Math.floor(Math.random() * messages.length)];
-};
+  };
+
   // Fetch a random verb based on selected tenses
   const fetchRandomVerb = useCallback(() => {
     console.log("Fetching random verb for", language);
@@ -177,7 +179,6 @@ const VerbConjugation = ({ language, sessionType, onScoreUpdate }) => {
     setCurrentTense(randomTense);
     setCurrentPronoun(randomPronoun);
   }, [language, selectedTenses]);
-
 
   // Start gameplay
   const startGameplay = () => {
@@ -314,6 +315,13 @@ const VerbConjugation = ({ language, sessionType, onScoreUpdate }) => {
     </motion.div>
   );
 
+  // Format time display
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  };
+
   // Move to next question or end session
   const moveToNextQuestion = () => {
     const newQuestionCount = questionCount + 1;
@@ -386,13 +394,6 @@ const VerbConjugation = ({ language, sessionType, onScoreUpdate }) => {
         }
       };
     });
-  };
-
-  // Format time display
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
   // Timer effect

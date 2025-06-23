@@ -1,5 +1,6 @@
 // src/components/SessionSummary.jsx
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const SessionSummary = ({ 
   stats, 
@@ -48,6 +49,26 @@ const SessionSummary = ({
         <p><strong>Incorrect Answers:</strong> {stats.incorrect.length}</p>
         <p><strong>Accuracy:</strong> {accuracyPercentage}%</p>
       </div>
+      
+      {accuracyPercentage === 100 && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="perfect-score"
+        >
+          <p>🏆 Perfect score! You're mastering this language!</p>
+        </motion.div>
+      )}
+      
+      {accuracyPercentage >= 80 && accuracyPercentage < 100 && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="congrats-message"
+        >
+          <p>🌟 Great job! Keep practicing to reach perfection!</p>
+        </motion.div>
+      )}
     </div>
   );
 
@@ -55,7 +76,13 @@ const SessionSummary = ({
     <div className="problematic-verbs">
       <h3>Verbs to Review</h3>
       {problematicVerbs.length === 0 ? (
-        <p>Great job! No specific verbs to review.</p>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="congrats-message"
+        >
+          <p>Great job! No specific verbs to review.</p>
+        </motion.div>
       ) : (
         <table className="verb-performance-table">
           <thead>
@@ -66,26 +93,31 @@ const SessionSummary = ({
             </tr>
           </thead>
           <tbody>
-            {problematicVerbs.map(([verb, data]) => (
-              <tr key={verb}>
+            {problematicVerbs.map(([verb, data], index) => (
+              <motion.tr 
+                key={verb}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
                 <td>{verb}</td>
                 <td>{data.count}</td>
                 <td>
                   <details>
-                    <summary>View Mistakes</summary>
-                    <ul>
-                      {data.instances.map((instance, index) => (
-                        <li key={index}>
-                          <p>Tense: {instance.tense}</p>
-                          <p>Pronoun: {instance.pronoun}</p>
-                          <p>Correct Answer: {instance.correctAnswer}</p>
-                          <p>Your Answer: {instance.userAnswer}</p>
+                    <summary className="details-summary">View Mistakes</summary>
+                    <ul className="mistakes-list">
+                      {data.instances.map((instance, idx) => (
+                        <li key={idx} className="mistake-item">
+                          <p><strong>Tense:</strong> {instance.tense}</p>
+                          <p><strong>Pronoun:</strong> {instance.pronoun}</p>
+                          <p><strong>Correct Answer:</strong> <span className="correct-answer">{instance.correctAnswer}</span></p>
+                          <p><strong>Your Answer:</strong> <span className="user-answer">{instance.userAnswer}</span></p>
                         </li>
                       ))}
                     </ul>
                   </details>
                 </td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
         </table>
@@ -117,13 +149,18 @@ const SessionSummary = ({
             </tr>
           </thead>
           <tbody>
-            {tensePerformance.map(tense => (
-              <tr key={tense.tense}>
+            {tensePerformance.map((tense, index) => (
+              <motion.tr 
+                key={tense.tense}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
                 <td>{tense.tense}</td>
                 <td>{tense.total}</td>
                 <td>{tense.correct}</td>
                 <td>{tense.accuracy}%</td>
-              </tr>
+              </motion.tr>
             ))}
           </tbody>
         </table>
@@ -164,8 +201,20 @@ const SessionSummary = ({
       </div>
 
       <div className="summary-actions">
-        <button onClick={onRestart}>Practice Again</button>
-        <button onClick={onChangeSettings}>Change Settings</button>
+        <motion.button 
+          onClick={onRestart}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Practice Again
+        </motion.button>
+        <motion.button 
+          onClick={onChangeSettings}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Change Settings
+        </motion.button>
       </div>
     </div>
   );

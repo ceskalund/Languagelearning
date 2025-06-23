@@ -1,28 +1,18 @@
+// src/components/LanguageSelector.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// Shared color palette for consistency
+// Updated color palette to match NorwegianSynonyms.css
 const COLORS = {
-  primary: '#FF6B6B',
-  secondary: '#4ECDC4',  // Unified background color
+  primary: '#4ECDC4',
+  primaryHover: '#44BDB5',
+  secondary: '#FF6B6B',
+  secondaryHover: '#E95F5F',
   background: '#F7FFF7',
+  foreground: 'white',
   text: '#1A535C',
-  accent: '#FFE66D',
+  border: '#4ECDC4'
 };
-
-const MinimalMascot = () => (
-  <div className="flex justify-center">
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 100 100"
-      width="48"  // Fixed width
-      height="48" // Fixed height
-      className="mx-auto"
-    >
-      {/* Add mascot SVG content here */}
-    </svg>
-  </div>
-);
 
 const LanguageSelector = ({ onSelectLanguage }) => {
   const languages = [
@@ -41,61 +31,117 @@ const LanguageSelector = ({ onSelectLanguage }) => {
   ];
 
   return (
-    <div 
-      className="relative flex flex-col items-center justify-center w-full min-h-screen p-6"
-      style={{ backgroundColor: COLORS.secondary }} // Unified background
-    >
-      {/* Centered Minimal Mascot (Fixed Size) */}
-      <MinimalMascot />
-
-      <motion.h1 
-        className="text-3xl font-bold mb-4 text-center"
-        style={{ color: COLORS.primary }}
-        initial={{ opacity: 0, y: -50 }}
+    <div className="language-selector-container" style={{ 
+      maxWidth: '800px',
+      margin: '0 auto',
+      padding: '20px'
+    }}>
+      <motion.div 
+        className="language-selection"
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        style={{
+          backgroundColor: 'white',
+          borderRadius: '10px',
+          padding: '30px',
+          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
+          textAlign: 'center'
+        }}
       >
-        Choisissez Votre Langue
-      </motion.h1>
-      
-      <p className="text-lg mb-6 text-center" style={{ color: COLORS.background }}>
-        Sélectionnez une langue pour commencer
-      </p>
-      
-      <div className="space-y-4 w-full max-w-xs">
-        {languages.map((language, index) => (
-          <motion.button
-            key={language.code}
-            onClick={() => onSelectLanguage(language.code)}
-            className="
-              w-full 
-              p-4 
-              rounded-lg 
-              shadow-md 
-              flex 
-              items-center 
-              justify-start 
-              space-x-4
-              hover:bg-opacity-90
-              transition-all duration-300
-            "
-            style={{ 
-              backgroundColor: COLORS.primary,
-              color: COLORS.background
-            }}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ delay: index * 0.2, type: "spring", stiffness: 300 }}
-          >
-            <span className="text-3xl">{language.flag}</span>
-            <div className="text-left">
-              <h2 className="text-xl font-bold">{language.name}</h2>
-              <p className="text-sm opacity-75">{language.description}</p>
-            </div>
-          </motion.button>
-        ))}
-      </div>
+        <motion.h2 
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          style={{
+            color: COLORS.text,
+            marginBottom: '20px',
+            fontSize: '2rem'
+          }}
+        >
+          Choose Your Language
+        </motion.h2>
+        
+        <div className="instructions" style={{
+          backgroundColor: COLORS.background,
+          padding: '20px',
+          borderRadius: '8px',
+          marginBottom: '30px',
+          textAlign: 'left'
+        }}>
+          <p style={{ margin: '10px 0', color: COLORS.text, lineHeight: '1.5' }}>
+            Select a language to begin your learning journey!
+          </p>
+          <p style={{ margin: '10px 0', color: COLORS.text, lineHeight: '1.5' }}>
+            Each language features unique vocabulary and grammar exercises.
+          </p>
+        </div>
+        
+        <div className="language-options-container" style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          {languages.map((language, index) => (
+            <motion.button
+              key={language.code}
+              onClick={() => onSelectLanguage(language.code)}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{
+                backgroundColor: COLORS.background,
+                border: `2px solid ${COLORS.border}`,
+                borderRadius: '8px',
+                padding: '15px 20px',
+                fontSize: '1.1rem',
+                textAlign: 'left',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                color: COLORS.text,
+                fontWeight: '500',
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
+              <span style={{ 
+                fontSize: '2rem', 
+                marginRight: '15px',
+                backgroundColor: index === 0 ? COLORS.primary : COLORS.secondary,
+                color: 'white',
+                width: '50px',
+                height: '50px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%'
+              }}>{language.flag}</span>
+              <div>
+                <h3 style={{ margin: '0 0 5px 0', fontWeight: '600' }}>{language.name}</h3>
+                <p style={{ margin: 0, fontSize: '0.9rem', opacity: '0.8' }}>{language.description}</p>
+              </div>
+            </motion.button>
+          ))}
+        </div>
+        
+        <motion.button 
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{
+            backgroundColor: COLORS.primary,
+            color: 'white',
+            fontSize: '1.1rem',
+            padding: '12px 30px',
+            border: 'none',
+            borderRadius: '25px',
+            cursor: 'pointer',
+            fontWeight: '600',
+            transition: 'all 0.2s ease',
+            marginTop: '30px'
+          }}
+          onClick={() => window.location.reload()}
+        >
+          View All Options
+        </motion.button>
+      </motion.div>
     </div>
   );
 };

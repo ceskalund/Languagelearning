@@ -23,6 +23,7 @@ const FrenchSynonyms = ({ sessionType, onScoreUpdate }) => {
     status: '',
     message: ''
   });
+  const [readyForNextQuestion, setReadyForNextQuestion] = useState(false);
   
   // State for tracking score and session stats
   const [score, setScore] = useState(0);
@@ -227,6 +228,7 @@ const FrenchSynonyms = ({ sessionType, onScoreUpdate }) => {
     // Reset the selected option and result
     setSelectedOption(null);
     setResult({ status: '', message: '' });
+    setReadyForNextQuestion(false);
 
     return selectedWord;
   };
